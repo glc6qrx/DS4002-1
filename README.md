@@ -1,20 +1,39 @@
-# DS4002-1
-Predicting the Age of NBA Athletes Using a Convolutional Neural Network
-LINK TO DATA AND DATA DICTIONARY: https://drive.google.com/drive/u/2/folders/1owxgUuXxgO_PDYXn2aHGSZLY0AMlRrup 
+# Predicting the Age of NBA Athletes Using a Convolutional Neural Network
 
-# SRC Folder
-To obtain pictures of all current NBA players, we wrote a program named 'grabAndName.py' to automate the process. All NBA players' most recent picture is available at the url: https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png.
+The purpose of this repository is to assist readers in reproducing our results on age classification for facial images of the NBA population. The repository consists of:
 
-# References:
-[1] Y. Song & Z. Zhang, “UTKFace | Large Scale Face Dataset,” [Online]. Available: https://susanqq.github.io/UTKFace/. [Accessed Sept. 14, 2022].
-
-[2] Fazle Rabbi, “Facial Age,” Kaggle, 2018. [Online]. Available: https://www.kaggle.com/datasets/frabbisw/facial-age. [Accessed Sept. 14, 2022].
-
-[3] DJJerrish, “NBA Player Image Dataset 2019-20,” Kaggle, 2020. [Online]. Available: https://www.kaggle.com/datasets/djjerrish/nba-player-image-dataset-201920. [Accessed Sept. 10, 2022].
-
-[4] E. Tocco, “NBA Player Stats,” Kaggle, Apr., 2022. [Online]. Available: https://data.world/etocco/nba-player-stats#. [Accessed Sept. 12, 2022].
-
-[5] 2020. [Online]. Available: https://pyimagesearch.com/2020/04/13/opencv-age-detection-with-deep-learning/. [Accessed Sept. 12, 2022].
+## SRC
+### Code Building
 
 
-[6] Skillcate AI, “Age Detection Model using CNN — a complete guide,” Medium, Aug. 23, 2022. [Online]. Available: https://medium.com/@skillcate/age-detection-model-using-cnn-a-complete-guide-7b10ad717c60. [Accessed: Sept. 10, 2022][5] A. Rosebrock, “OpenCV Age Detection with Deep Learning,”  pyimagesearch, Apr. 12, 
+### Code Usage
+If you find our models or code useful, please add suitable reference to our project in your work.
+
+Make an H3 section for Installing/Building your code
+Make an H3 section for Usage of your code · 
+
+## Data 
+### Training Data: UTK FACE
+The data used to train the age classifcation model comes from the [UTK Face](https://susanqq.github.io/UTKFace/) database. The specific data used is the "Aligned & Cropped Faces" file. 
+
+The labels of each face image is embedded in the file name, formated like [age]_[gender]_[race]_[date&time].jpg
+| :---        |    :----:   | 
+| age         | is an integer from 0 to 116, indicating the age | 
+| gender      | is either 0 (male) or 1 (female)       | 
+| race        | is an integer from 0 to 4, denoting White, Black, Asian, Indian, and Others (like Hispanic, Latino, Middle Eastern) |
+| date&time   | is in the format of yyyymmddHHMMSSFFF, showing the date and time an image was collected to UTKFace        |
+
+
+### Test Data: NBA 
+
+
+## FIGURES 
+This will be in progress when MI3 is complete and finished during MI4 
+Table of contents describing all figures produced and summarizing their takeaways
+Use markdown table formatting · 
+
+## References 
+All references should be listed at the end of the Readme.md file (Use IEEE Documentation style (link)) 
+Include any acknowledgements 
+Include (by link) your MI1 and MI2 assignments
+
