@@ -1,6 +1,10 @@
 # DS4002-1
 Predicting the Age of NBA Athletes Using a Convolutional Neural Network
 LINK TO DATA AND DATA DICTIONARY: https://drive.google.com/drive/u/2/folders/1owxgUuXxgO_PDYXn2aHGSZLY0AMlRrup 
+
+# SRC Folder
+To obtain pictures of all current NBA players, we wrote a program named 'grabAndName.py' to automate the process. All NBA players' most recent picture is available at the url: https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png.
+
 # References:
 [1] Y. Song & Z. Zhang, “UTKFace | Large Scale Face Dataset,” [Online]. Available: https://susanqq.github.io/UTKFace/. [Accessed Sept. 14, 2022].
 
