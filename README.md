@@ -3,7 +3,7 @@
 The purpose of this repository is to assist readers in reproducing our results on age classification for facial images of the NBA population. The repository consists of:
 
 ## SRC
-### Code Buildinge
+### Code Building
 
 **Test Data Creation** 
 To obtain the pictures and ages of all current NBA players, we wrote a program named 'grabAndName.py' to automate the process. All NBA players' most recent picturee is available [here](https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png). All the Player IDs can be found [here](http://data.nba.net/data/10s/prod/v1/2019/players.json). We tidied the JSON dataset in Excel to remove duplicates and players who were not currently active. We also used Excel’s functionality to get the age of each player from their Date of Birth along with the instance of that age (which will be significant later when we are analyzing the accuracy of the algorithm for different age groups). Then we wrote grabAndName.py to download all the most recent pictures for all active players and name the files in the format: age_ageInstance.
@@ -28,11 +28,11 @@ The labels of each face image is embedded in the file name, formated like [age]_
 
 
 ### Test Data: NBA 
-The data used to test the age classification model was built using NBA player data [here](https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png) and [here](http://data.nba.net/data/10s/prod/v1/2019/players.json).
+The data used to test the age classification model was built using NBA player data [here](https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png) and [here](http://data.nba.net/data/10s/prod/v1/2019/players.json). Folder containing most recent pictures of all active NBA players. All files are named in the format “age_instance.”
 | Name        | Description                                                                                                         |
 | ------------|---------------------------------------------------------------------------------------------------------------------|
-| filename    | facial image                                                                                                        | 
-| age         | age of the corresponding face.                                                                                      | 
+| image       | facial image of NBA player                                                                                          | 
+| age         | age of the player.                                                                                                  | 
 
 ## FIGURES 
 This will be in progress when MI3 is complete and finished during MI4 
