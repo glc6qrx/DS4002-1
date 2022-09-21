@@ -5,11 +5,11 @@ The purpose of this repository is to assist readers in reproducing our results o
 ## SRC
 ### Code Buildinge
 
-* Test Data Creation * 
-To obtain the pictures and ages of all current NBA players, we wrote a program named 'grabAndName.py' to automate the process. All NBA players' most recent pictures are available here: https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png (where you replace PLAYERID with the NBA's Player ID). All the Player IDs can be found [here](http://data.nba.net/data/10s/prod/v1/2019/players.json). We tidied the JSON dataset in Excel to remove duplicates and players who were not currently active. We also used Excel’s functionality to get the age of each player from their Date of Birth along with the instance of that age (which will be significant later when we are analyzing the accuracy of the algorithm for different age groups). Then we wrote grabAndName.py to download all the most recent pictures for all active players and name the files in the format: age_ageInstance.
+**Test Data Creation** 
+To obtain the pictures and ages of all current NBA players, we wrote a program named 'grabAndName.py' to automate the process. All NBA players' most recent picturee is available [here](https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/PLAYERID.png). All the Player IDs can be found [here](http://data.nba.net/data/10s/prod/v1/2019/players.json). We tidied the JSON dataset in Excel to remove duplicates and players who were not currently active. We also used Excel’s functionality to get the age of each player from their Date of Birth along with the instance of that age (which will be significant later when we are analyzing the accuracy of the algorithm for different age groups). Then we wrote grabAndName.py to download all the most recent pictures for all active players and name the files in the format: age_ageInstance.
 
-* Model Training * 
-The code to train our Deep Learning Age Detection Model was created by [DigitalSreeni](https://www.youtube.com/watch?v=rdjWDAYt98s). 
+**Model Training** 
+The code to train our Deep Learning Age Detection Model was created by [DigitalSreeni](https://www.youtube.com/watch?v=rdjWDAYt98s). The code to test and evaluate the model was created by Catherine Schuster. All model code is consolidated in AgeDetection.py
 
 ### Code Usage
 If you find our models or code useful, please add suitable reference to our project and in your work.
