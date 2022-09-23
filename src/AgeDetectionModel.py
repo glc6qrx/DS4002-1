@@ -17,12 +17,19 @@ import cv2
 from keras.models import Sequential,load_model,Model
 from keras.layers import Conv2D,MaxPool2D,Dense,Dropout,BatchNormalization,Flatten,Input
 from sklearn.model_selection import train_test_split
+from zipfile import ZipFile
 
 
 #################################################
 # Loop through age file names to extract ages
 #################################################
-path = "~/home/cas7kvf/DS4002-1/UTKFace"
+path = "~/DS4002-1/UTKFace.tar"
+
+
+with ZipFile('UTKFace.tar', 'r') as zipObj:
+   zipObj.extractall()
+  
+path = "~/DS4002-1/UTKFace"
 images = []
 age = []
 
