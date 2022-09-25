@@ -29,7 +29,7 @@ path = "~/DS4002-1/data/UTKFace.zip"
 with ZipFile(path) as zipObj:
    zipObj.extractall()
   
-path = "~/DS4002-1/UTKFace"
+path = "~/DS4002-1/data/UTKFace"
 images = []
 age = []
 
