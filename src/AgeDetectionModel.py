@@ -30,7 +30,6 @@ age = []
 
 for img in os.listdir(path):
   ages = img.split("_")[0]
-  genders = img.split("_")[1]
   img = cv2.imread(str(path)+"/"+str(img))
   img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
   images.append(np.array(img))
@@ -131,4 +130,33 @@ import seaborn as sns
 cm=confusion_matrix(y_test_age, y_pred)  
 sns.heatmap(cm, annot=True)
 
+########################################################
+#Test On NBA
+path = "/home/cas7kvf/DS4002-1/data/NBA Testing Data"
+
+images_nba = []
+age_nba = []
+
+for img in os.listdir(path):
+  ages = img.split("_")[0]
+  img = cv2.imread(str(path)+"/"+str(img))
+  img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+  images_nba.append(np.array(img))
+  age_nba.append(np.array(ages))
+  
+y_test_nba = np.array(age_nba,dtype=np.int64)
+x_test_nba = np.array(images_nba)   #Forgot to scale image for my training. Please divide by 255 to scale. 
+
+#Test the model on NBA
+nbapredictions = my_model.predict(x_test_nba)
+y_pred_nba = (nbapredictions>= 0.5).astype(int)[:,0]
+
+from sklearn import metrics
+print ("Accuracy = ", metrics.accuracy_score(y_test_nba, y_pred_nba))
+
+#Confusion Matrix - verify accuracy of each class
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+cm_nba=confusion_matrix(y_test_nba, y_pred_nba)  
+sns.heatmap(cm_nba, annot=True)
 
