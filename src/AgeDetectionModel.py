@@ -23,7 +23,7 @@ from zipfile import ZipFile
 #################################################
 # Loop through age file names to extract ages
 #################################################
-path = "~/DS4002-1/UTKFace.tar"
+path = "~/DS4002-1/src/UTKFace.tar"
 
 
 with ZipFile('UTKFace.tar', 'r') as zipObj:
