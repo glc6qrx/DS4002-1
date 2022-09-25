@@ -22,7 +22,7 @@ from sklearn.model_selection import train_test_split
 #################################################
 # Loop through age file names to extract ages
 #################################################
-path = "~/DS4002-1/data/UTKFace"
+path = "/DS4002-1/data/UTKFace"
 
 
 images = []
