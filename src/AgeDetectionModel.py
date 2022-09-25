@@ -69,7 +69,7 @@ age_model.add(Dense(512, activation='relu'))
 
 age_model.add(Dense(1, activation='linear', name='age'))
               
-age_model.compile(optimizer='adam', loss='mse', metrics=['mae'])
+age_model.compile(optimizer='adam', loss='mse', metrics=['mae', "acc"])
 print(age_model.summary())              
                            
 history_age = age_model.fit(x_train_age, y_train_age,
@@ -96,10 +96,11 @@ plt.xlabel('Epochs')
 plt.ylabel('Loss')
 plt.legend()
 plt.show()
+plt.savefig('TrainingLoss.png')
 
-acc = history.history['accuracy']
+acc = history.history['acc']
 #acc = history.history['accuracy']
-val_acc = history.history['val_accuracy']
+val_acc = history.history['val_acc']
 #val_acc = history.history['val_accuracy']
 
 plt.plot(epochs, acc, 'y', label='Training acc')
@@ -109,6 +110,7 @@ plt.xlabel('Epochs')
 plt.ylabel('Accuracy')
 plt.legend()
 plt.show()
+plt.savefig('TrainingAccuracy.png')
 
 ####################################################################
 # Evaluate performance of trained model (Confusion Matrix)
@@ -128,7 +130,8 @@ print ("Accuracy = ", metrics.accuracy_score(y_test_age, y_pred))
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 cm=confusion_matrix(y_test_age, y_pred)  
-sns.heatmap(cm, annot=True)
+trainaccuracy = sns.heatmap(cm, annot=True)
+trainaccuracy.figure.savefig("TrainAccuracy.png")
 
 ########################################################
 #Test On NBA
@@ -158,5 +161,6 @@ print ("Accuracy = ", metrics.accuracy_score(y_test_nba, y_pred_nba))
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 cm_nba=confusion_matrix(y_test_nba, y_pred_nba)  
-sns.heatmap(cm_nba, annot=True)
+NBAaccuracy = sns.heatmap(cm_nba, annot=True)
+NBAaccuracy.figure.savefig("NBAaccuracy.png")
 
