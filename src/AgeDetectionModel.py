@@ -126,9 +126,15 @@ y_pred30 = (predictions>= 0.30).astype(int)[:,0]
 y_pred50 = (predictions>= 0.25).astype(int)[:,0]
 
 from sklearn import metrics
-print ("Accuracy15 = ", metrics.accuracy_score(y_test_age, y_pred15))
-print ("Accuracy30 = ", metrics.accuracy_score(y_test_age, y_pred30))
-print ("Accuracy50 = ", metrics.accuracy_score(y_test_age, y_pred50))
+print ("Accuracy train 15 = ", metrics.accuracy_score(y_test_age, y_pred15))
+fpr, tpr, thresholds = metrics.roc_curve(y_test_age, y_pred15)
+print ("AUC train 15 = ", metrics.auc(fpr, tpr))
+print ("Accuracy train 30 = ", metrics.accuracy_score(y_test_age, y_pred30))
+fpr, tpr, thresholds = metrics.roc_curve(y_test_age, y_pred30)
+print ("AUC train 30 = ", metrics.auc(fpr, tpr))
+print ("Accuracy train 50 = ", metrics.accuracy_score(y_test_age, y_pred50))
+fpr, tpr, thresholds = metrics.roc_curve(y_test_age, y_pred50)
+print ("AUC train 50 = ", metrics.auc(fpr, tpr))
 
 #Confusion Matrix - verify accuracy of each class
 from sklearn.metrics import confusion_matrix
