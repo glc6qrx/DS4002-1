@@ -97,6 +97,7 @@ plt.ylabel('Loss')
 plt.legend()
 plt.show()
 plt.savefig('TrainingLoss.png')
+plt.clf()
 
 acc = history.history['acc']
 #acc = history.history['accuracy']
@@ -111,6 +112,7 @@ plt.ylabel('Accuracy')
 plt.legend()
 plt.show()
 plt.savefig('TrainingAccuracy.png')
+plt.clf()
 
 ####################################################################
 # Evaluate performance of trained model (Confusion Matrix)
