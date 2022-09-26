@@ -134,18 +134,15 @@ print ("Accuracy50 = ", metrics.accuracy_score(y_test_age, y_pred50))
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
 cm15=confusion_matrix(y_test_age, y_pred15)  
-print("TrainMatrix 15", cm15)
+cm15df = pd.DataFrame(cm15)
+cm15df.to_csv('cm15.csv')
 cm30=confusion_matrix(y_test_age, y_pred30)  
-print("TrainMatrix 30", cm30)
+cm30df = pd.DataFrame(cm30)
+cm30df.to_csv('cm30.csv')
 cm50=confusion_matrix(y_test_age, y_pred50)  
-print("TrainMatrix 50", cm50)
+cm50df = pd.DataFrame(cm50)
+cm50df.to_csv('cm50.csv')
 
-trainaccuracy15 = sns.heatmap(cm15, annot=True)
-trainaccuracy15.figure.savefig("TrainAccuracy15.png")
-trainaccuracy30 = sns.heatmap(cm30, annot=True)
-trainaccuracy30.figure.savefig("TrainAccuracy30.png")
-trainaccuracy50 = sns.heatmap(cm50, annot=True)
-trainaccuracy50.figure.savefig("TrainAccuracy50.png")
 
 ########################################################
 #Test On NBA
