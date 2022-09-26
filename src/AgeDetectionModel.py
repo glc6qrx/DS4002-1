@@ -121,17 +121,31 @@ my_model = load_model('age_model_50epochs.h5', compile=False)
 
 
 predictions = my_model.predict(x_test_age)
-y_pred = (predictions>= 0.5).astype(int)[:,0]
+y_pred15 = (predictions>= 0.15).astype(int)[:,0]
+y_pred30 = (predictions>= 0.30).astype(int)[:,0]
+y_pred50 = (predictions>= 0.25).astype(int)[:,0]
 
 from sklearn import metrics
-print ("Accuracy = ", metrics.accuracy_score(y_test_age, y_pred))
+print ("Accuracy15 = ", metrics.accuracy_score(y_test_age, y_pred15))
+print ("Accuracy30 = ", metrics.accuracy_score(y_test_age, y_pred30))
+print ("Accuracy50 = ", metrics.accuracy_score(y_test_age, y_pred50))
 
 #Confusion Matrix - verify accuracy of each class
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
-cm=confusion_matrix(y_test_age, y_pred)  
-trainaccuracy = sns.heatmap(cm, annot=True)
-trainaccuracy.figure.savefig("TrainAccuracy.png")
+cm15=confusion_matrix(y_test_age, y_pred15)  
+print("TrainMatrix 15", cm15)
+cm30=confusion_matrix(y_test_age, y_pred30)  
+print("TrainMatrix 30", cm30)
+cm50=confusion_matrix(y_test_age, y_pred50)  
+print("TrainMatrix 50", cm50)
+
+trainaccuracy15 = sns.heatmap(cm15, annot=True)
+trainaccuracy15.figure.savefig("TrainAccuracy15.png")
+trainaccuracy30 = sns.heatmap(cm30, annot=True)
+trainaccuracy30.figure.savefig("TrainAccuracy30.png")
+trainaccuracy50 = sns.heatmap(cm50, annot=True)
+trainaccuracy50.figure.savefig("TrainAccuracy50.png")
 
 ########################################################
 #Test On NBA
@@ -141,12 +155,12 @@ images_nba = []
 age_nba = []
 
 for img in os.listdir(path):
-  ages = img.split("_")[0]
   img = cv2.imread(str(path)+"/"+str(img))
   if img is None:
     print("Unable to load image at path {}".format(str(path)+"/"+str(img)))
   else:
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    ages = img.split("_")[0]
   images_nba.append(np.array(img))
   age_nba.append(np.array(ages))
   
@@ -155,15 +169,29 @@ x_test_nba = np.array(images_nba)   #Forgot to scale image for my training. Plea
 
 #Test the model on NBA
 nbapredictions = my_model.predict(x_test_nba)
-y_pred_nba = (nbapredictions>= 0.5).astype(int)[:,0]
+y_pred_nba15 = (nbapredictions>= 0.15).astype(int)[:,0]
+y_pred_nba30 = (nbapredictions>= 0.30).astype(int)[:,0]
+y_pred_nba50 = (nbapredictions>= 0.50).astype(int)[:,0]
 
 from sklearn import metrics
-print ("Accuracy = ", metrics.accuracy_score(y_test_nba, y_pred_nba))
+print ("Accuracy15 = ", metrics.accuracy_score(y_test_nba, y_pred_nba15))
+print ("Accuracy30 = ", metrics.accuracy_score(y_test_nba, y_pred_nba30))
+print ("Accuracy50 = ", metrics.accuracy_score(y_test_nba, y_pred_nba50))
 
 #Confusion Matrix - verify accuracy of each class
 from sklearn.metrics import confusion_matrix
 import seaborn as sns
-cm_nba=confusion_matrix(y_test_nba, y_pred_nba)  
-NBAaccuracy = sns.heatmap(cm_nba, annot=True)
-NBAaccuracy.figure.savefig("NBAaccuracy.png")
+cm_nba15=confusion_matrix(y_test_nba, y_pred_nba15)  
+print("TestMatrix 15 = ", cm_nba15)
+cm_nba30=confusion_matrix(y_test_nba, y_pred_nba30)  
+print("TestMatrix 30 = ",cm_nba30)
+cm_nba50=confusion_matrix(y_test_nba, y_pred_nba50)  
+print("TestMatrix 50 = ",cm_nba50)
+
+NBAaccuracy15 = sns.heatmap(cm_nba15, annot=True)
+NBAaccuracy15.figure.savefig("NBAaccuracy15.png")
+NBAaccuracy30 = sns.heatmap(cm_nba30, annot=True)
+NBAaccuracy30.figure.savefig("NBAaccuracy30.png")
+NBAaccuracy50 = sns.heatmap(cm_nba50, annot=True)
+NBAaccuracy50.figure.savefig("NBAaccuracy50.png")
 
