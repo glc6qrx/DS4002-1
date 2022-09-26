@@ -144,9 +144,9 @@ for img in os.listdir(path):
   ages = img.split("_")[0]
   img = cv2.imread(str(path)+"/"+str(img))
   if img is None:
-        print("Unable to load image at path {}".format(str(path)+"/"+str(img)))
-    else:
-        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    print("Unable to load image at path {}".format(str(path)+"/"+str(img)))
+  else:
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
   images_nba.append(np.array(img))
   age_nba.append(np.array(ages))
   
