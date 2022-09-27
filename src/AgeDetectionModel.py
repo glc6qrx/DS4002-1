@@ -130,14 +130,9 @@ y_pred50 = (predictions>= 0.25).astype(int)[:,0]
 
 from sklearn import metrics
 print ("Accuracy train 15 = ", metrics.accuracy_score(y_test_age, y_pred15))
-fpr, tpr, thresholds = metrics.roc_curve(y_test_age, y_pred15)
-print ("AUC train 15 = ", metrics.auc(fpr, tpr))
 print ("Accuracy train 30 = ", metrics.accuracy_score(y_test_age, y_pred30))
-fpr, tpr, thresholds = metrics.roc_curve(y_test_age, y_pred30)
-print ("AUC train 30 = ", metrics.auc(fpr, tpr))
 print ("Accuracy train 50 = ", metrics.accuracy_score(y_test_age, y_pred50))
-fpr, tpr, thresholds = metrics.roc_curve(y_test_age, y_pred50)
-print ("AUC train 50 = ", metrics.auc(fpr, tpr))
+
 
 #Confusion Matrix - verify accuracy of each class
 from sklearn.metrics import confusion_matrix
@@ -179,14 +174,8 @@ y_pred_nba50 = (nbapredictions>= 0.50).astype(int)[:,0]
 
 from sklearn import metrics
 print ("Accuracy test 15 = ", metrics.accuracy_score(y_test_nba, y_pred_nba15))
-fpr, tpr, thresholds = metrics.roc_curve(y_test_nba, y_pred_nba15)
-print ("AUC test 15 = ", metrics.auc(fpr, tpr))
 print ("Accuracy test 30 = ", metrics.accuracy_score(y_test_nba, y_pred_nba30))
-fpr, tpr, thresholds = metrics.roc_curve(y_test_nba, y_pred_nba30)
-print ("AUC test 30 = ", metrics.auc(fpr, tpr))
 print ("Accuracy test 50 = ", metrics.accuracy_score(y_test_nba, y_pred_nba50))
-fpr, tpr, thresholds = metrics.roc_curve(y_test_nba, y_pred_nba50)
-print ("AUC test 50 = ", metrics.auc(fpr, tpr))
 
 #Confusion Matrix - verify accuracy of each class
 from sklearn.metrics import confusion_matrix
