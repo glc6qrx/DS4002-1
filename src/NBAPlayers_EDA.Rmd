@@ -1,0 +1,126 @@
+---
+title: "DS4002_NBAPlayersEDA"
+author: "Catherine Schuster"
+date: "2022-09-14"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+UTKFace <- list.files('/Users/catherineschuster/Desktop/DS 4002/UTKFace')
+NBA <- list.files('/Users/catherineschuster/Desktop/DS 4002/NBA Testing Data')
+
+countutk <- c(1:length(UTKFace))
+countnba <- c(1:length(NBA))
+
+agesutk <- array(0, length(UTKFace))
+for (i in 1:length(UTKFace)){
+    string <- str_split(UTKFace[i], "_", simplify = TRUE)[1]
+    agesutk[i] <- string
+}
+
+agesnba <- array(0, length(NBA))
+for (i in 1:length(NBA)){
+    string <- str_split(NBA[i], "_", simplify = TRUE)[1]
+    agesnba[i] <- string
+}
+
+utk <- cbind(countutk, agesutk)
+nba <- cbind(countnba, agesnba)
+utk <- data.frame(utk) %>% rename(count = countutk, ages = agesutk)
+nba <- data.frame(nba) %>% rename(count = countnba, ages = agesnba)
+utk$count <- as.numeric(utk$count)
+utk$ages <- as.numeric(utk$ages)
+nba$count <- as.numeric(nba$count)
+nba$ages <- as.numeric(nba$ages)
+```
+
+
+# What is the distribution of ages in the NBA for the 2021-2022 season?
+```{r}
+
+ggplot(nba, aes(x = ages)) + 
+   geom_histogram(aes(y=..density..), bins = 20) +
+  geom_density(fill = "#69b3a2", color="#69b3a2", alpha=0.2) + 
+  theme_minimal() + labs(y= "Density", title = "NBA Player Age Distribution (2021-2022 Season)")
+```
+
+# How can NBA age prediction help us make inferences on a player's playing minutes,
+# points scored, rank, or position? 
+
+```{r}
+
+ggplot(nbaa_ages, aes(x = reorder(Pos, Age, FUN = mean), y = Age)) + 
+  geom_boxplot() + theme_minimal() + labs(x = "Player Position", 
+                                          title = "Distribution of NBA Player Position by Age (2021-2022 Season)")
+```
+Certain positions are associated with older players, on average, while other positions average younger players.
+
+```{r}
+ggplot(nbaa_ages, aes(x = jitter(Age), y = MP, color = -MP )) + 
+   geom_point() +                                    # Reverse color direction
+  guides(colour = guide_colourbar(reverse = TRUE)) + 
+  theme_minimal() + labs(title = "Training Data Age Distribution", x = "Age")
+```
+
+
+
+# How does the NBA age distribution compare to our training set?
+```{r}
+
+ggplot(utk, aes(x = ages)) + 
+   geom_histogram(aes(y=..density..), bins = 25) +
+  geom_density(fill = "#69b3a2", color="#69b3a2", alpha=0.2) + 
+  theme_minimal() + labs(y= "Density", title = "Training Data Age Distribution", x = "Age")
+```
+```{r}
+utk <- drop_na(utk)
+library(patchwork)
+utk$agebrackets <- cut(utk$ages, breaks=c(0, 2, 9, 20, 27,  35,  45,  65,  116), right = FALSE)
+nba$agebrackets <- cut(nba$ages, breaks=c(0, 2, 9, 20, 27,  35,  45,  65,  116), right = FALSE)
+utk <- drop_na(utk)
+
+plotnba <- ggplot(nba, aes(x = agebrackets)) + 
+  geom_bar(fill ="lightblue4") + theme_minimal() + 
+  labs (y = "", x = "", title = "Number of Observations by Age Bracket, NBA VS Train")  +
+  theme(axis.text.x=element_blank(),axis.ticks.x=element_blank())
+
+plotutk <- ggplot(utk, aes(x = agebrackets)) + 
+  geom_bar(fill="tomato3") + theme_minimal() + labs (y = "", x = "")
+
+plotnba / plotutk 
+```
+
+
+```{r}
+stats <- read.csv('/Users/catherineschuster/Desktop/DS 4002/NBA_Player_Stats.csv')
+stats
+stats$agebrackets <- cut(stats$Age, breaks=c(0, 2, 9, 20, 27,  35,  45,  65,  116), right = FALSE)
+avggamestats <- stats %>% group_by(Player) %>% summarize(age = mean(Age), avgMP = mean(MP), avgPTS = mean(PTS), avgFG = mean(FG), GS = max(GS), G = max(G), percGS = (max(GS)/max(G) * 100))
+avggamestats$age <- round(avggamestats$age)
+avggamestats$age <- as.numeric(avggamestats$age)
+
+avggamestats$agebrackets <- cut(avggamestats$age, breaks=c(18, 20, 25,  30, 35, 40, 45), right = FALSE)
+
+ggplot(avggamestats, aes(x= agebrackets, y = avgMP, col = agebrackets, fill = agebrackets)) + 
+  geom_bar( stat = "summary", fun.y = "mean") + 
+  theme_minimal() + labs(title = "Average Minutes Played by NBA Player Age", x = "", y = "Minutes Played") + 
+  scale_color_manual(values = c("tomato3", "coral3", "lightsalmon3", "lightcyan3", "lightblue3", "lightblue4")) + 
+  scale_fill_manual(values = c("tomato3", "coral3", "lightsalmon3", "lightcyan3", "lightblue3", "lightblue4"))
+
+ggplot(avggamestats, aes(x= agebrackets, y = avgPTS, col = agebrackets, fill = agebrackets)) + theme_minimal() +
+  geom_bar( stat = "summary", fun.y = "mean") + 
+  labs(title = "Average Points by NBA Player Age", x = "", y = "Points") + 
+  scale_color_manual(values = c("tomato3", "coral3", "lightsalmon3", "lightcyan3", "lightblue3", "lightblue4")) + 
+  scale_fill_manual(values = c("tomato3", "coral3", "lightsalmon3", "lightcyan3", "lightblue3", "lightblue4"))
+```
+
+
+
+
+
