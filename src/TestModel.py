@@ -28,7 +28,7 @@ age_nba = []
 for img in os.listdir(path):
   ages = img.split("_")[0]
   img = cv2.imread(str(path)+"/"+str(img))
-  img = np.reshape(img, (img.shape[0], 200, 200, 3))
+  img = img.reshape([-1, 200, 200, 3])
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
   images_nba.append(np.array(img))
   age_nba.append(np.array(ages))
