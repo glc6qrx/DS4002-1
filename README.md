@@ -35,9 +35,7 @@ The data used to test the age classification model was built using NBA player da
 | age         | age of the player.                                                                                                  | 
 
 ## FIGURES 
-This will be in progress when MI3 is complete and finished during MI4 
-Table of contents describing all figures produced and summarizing their takeaways
-Use markdown table formatting · 
+Scatterplots of (1) training accuracy and (2) training validation loss during model training.
 
 ## References 
 DigitalSreeni, “240 - Deep Learning training for age and gender detection.,” YouTube.com, Oct. 20, 2021. [Online]. Available: https://www.youtube.com/watch?v=rdjWDAYt98s. [Accessed Sept. 12, 2022].
