@@ -30,7 +30,7 @@ for img in os.listdir(path):
   img = cv2.imread(str(path)+"/"+str(img))
   img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
   img = cv2.resize(img, (200, 200))
-  img = img.reshape([-1, 200, 200, 3])
+  img = img.reshape(1, 200, 200, 3)
   images_nba.append(np.array(img))
   age_nba.append(np.array(ages))
   
