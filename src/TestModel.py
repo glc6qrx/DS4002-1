@@ -39,11 +39,13 @@ x_test_nba = np.array(images_nba)   #Forgot to scale image for my training. Plea
 
 #Test the model on NBA
 nbapredictions = my_model.predict(x_test_nba)
+y_pred_nba01 = (nbapredictions>= 0.01).astype(int)[:,0]
 y_pred_nba15 = (nbapredictions>= 0.15).astype(int)[:,0]
 y_pred_nba30 = (nbapredictions>= 0.30).astype(int)[:,0]
 y_pred_nba50 = (nbapredictions>= 0.50).astype(int)[:,0]
 
 from sklearn import metrics
+print ("Accuracy test 01 = ", metrics.accuracy_score(y_test_nba, y_pred_nba01))
 print ("Accuracy test 15 = ", metrics.accuracy_score(y_test_nba, y_pred_nba15))
 print ("Accuracy test 30 = ", metrics.accuracy_score(y_test_nba, y_pred_nba30))
 print ("Accuracy test 50 = ", metrics.accuracy_score(y_test_nba, y_pred_nba50))
