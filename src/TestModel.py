@@ -15,6 +15,7 @@ from keras.models import Sequential,load_model,Model
 from keras.layers import Conv2D,MaxPool2D,Dense,Dropout,BatchNormalization,Flatten,Input
 from sklearn.model_selection import train_test_split
 from keras.models import load_model
+from sklearn.metrics import mean_absolute_error as mae
 
 #Test the model
 my_model = load_model('/home/cas7kvf/DS4002-1/age_model_50epochs.h5', compile=False)
@@ -49,6 +50,7 @@ print ("Accuracy test 01 = ", metrics.accuracy_score(y_test_nba, y_pred_nba01))
 print ("Accuracy test 15 = ", metrics.accuracy_score(y_test_nba, y_pred_nba15))
 print ("Accuracy test 30 = ", metrics.accuracy_score(y_test_nba, y_pred_nba30))
 print ("Accuracy test 50 = ", metrics.accuracy_score(y_test_nba, y_pred_nba50))
+print("MAE = ", mae(y_test_nba, nbapredictions))
 
 #Confusion Matrix - verify accuracy of each class
 from sklearn.metrics import confusion_matrix
